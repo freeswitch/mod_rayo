@@ -257,7 +257,7 @@ static const char *nlsml_dtmf_instance_result =
 	"</interpretation></result>";
 
 
-FST_BEGIN()
+FST_CORE_DB_BEGIN("./conf")
 
 FST_SUITE_BEGIN(nlsml)
 
@@ -269,6 +269,7 @@ FST_SETUP_END()
 
 FST_TEARDOWN_BEGIN()
 {
+	nlsml_destroy();
 }
 FST_TEARDOWN_END()
 
@@ -340,4 +341,4 @@ FST_TEST_END()
 
 FST_SUITE_END()
 
-FST_END()
+FST_CORE_END()

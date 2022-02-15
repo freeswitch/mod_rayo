@@ -769,7 +769,7 @@ static const char *metadata_grammar =
 	"</grammar>";
 
 
-FST_BEGIN()
+FST_CORE_DB_BEGIN("./conf")
 
 FST_SUITE_BEGIN(srgs)
 
@@ -781,6 +781,7 @@ FST_SETUP_END()
 
 FST_TEARDOWN_BEGIN()
 {
+	srgs_destroy();
 }
 FST_TEARDOWN_END()
 
@@ -1275,5 +1276,5 @@ FST_TEST_END()
 
 FST_SUITE_END()
 
-FST_END()
+FST_CORE_END()
 
