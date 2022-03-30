@@ -22,7 +22,9 @@ $(IKS_LA): $(IKS_BUILDDIR) $(IKS_DIR) $(IKS_DIR)/.update
 	@cd $(IKS_BUILDDIR) && $(MAKE)
 	@$(TOUCH_TARGET)
 
-noinst_PROGRAMS = test/test_iks test/test_nlsml test/test_srgs
+noinst_PROGRAMS = test/test_iks
+noinst_PROGRAMS += test/test_nlsml
+noinst_PROGRAMS += test/test_srgs
 
 test_test_iks_SOURCES = test/test_iks.c
 test_test_iks_CFLAGS = $(AM_CFLAGS) -I. -I$(switch_builddir)/libs/iksemel/include $(PCRE_CFLAGS) -DSWITCH_TEST_BASE_DIR_FOR_CONF=\"${abs_builddir}/test\" -DSWITCH_TEST_BASE_DIR_OVERRIDE=\"${abs_builddir}/test\"
