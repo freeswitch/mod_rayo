@@ -524,17 +524,20 @@ static void add_channel_headers_to_event(iks *node, switch_channel_t *channel, i
 	switch_event_header_t *var;
 
 	/* add all SIP header variables and (if configured) all other variables */
-	for (var = switch_channel_variable_first(channel); var; var = var->next) {
-		if (!strncmp("sip_h_", var->name, 6)) {
-			add_header(node, var->name + 6, var->value);
+	if ((var = switch_channel_variable_first(channel))) {
+		for (; var; var = var->next) {
+			if (!strncmp("sip_h_", var->name, 6)) {
+				add_header(node, var->name + 6, var->value);
+			}
+			if (add_variables) {
+				char var_name[1024];
+				snprintf(var_name, 1024, "variable-%s", var->name);
+				add_header(node, var_name, var->value);
+			}
 		}
-		if (add_variables) {
-			char var_name[1024];
-			snprintf(var_name, 1024, "variable-%s", var->name);
-			add_header(node, var_name, var->value);
-		}
+
+		switch_channel_variable_last(channel);
 	}
-	switch_channel_variable_last(channel);
 }
 
 static void pause_inbound_calling(void)
