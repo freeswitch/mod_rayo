@@ -328,7 +328,7 @@ handshake (struct stream_data *data)
 		if (SSL_CTX_use_PrivateKey_file(data->ssl_ctx, data->key_file, SSL_FILETYPE_PEM) <= 0) {
 			return IKS_NET_TLSFAIL;
 		}
-		SSL_CTX_set_verify(data->ssl_ctx, SSL_VERIFY_NONE, NULL);
+		SSL_CTX_set_verify(data->ssl_ctx, SSL_VERIFY_PEER, NULL);
 	} else {
 		data->ssl_ctx = SSL_CTX_new(TLSv1_method());
 		if(!data->ssl_ctx) return IKS_NOMEM;
