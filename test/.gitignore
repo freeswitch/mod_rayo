@@ -1,0 +1,11 @@
+!test/conf
+*.fsxml
+test_iks
+test_iks.log
+test_iks.trs
+test_nlsml
+test_nlsml.log
+test_nlsml.trs
+test_srgs
+test_srgs.log
+test_srgs.trs
